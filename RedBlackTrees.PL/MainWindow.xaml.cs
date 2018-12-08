@@ -37,10 +37,10 @@ namespace RedBlackTrees.PL
                 _map.Add(i, i.ToString());
             }
             treeView.ItemsSource = _map.Root;
-            BFSButton.Click += (sender, args) => { new BFSWindow(_map.GetBreadthFirstSearchEnumerator()).Show(); };
+            BFSButton.Click += (sender, args) => { new TraverseWindow(_map.GetBreadthFirstSearchEnumerator()).Show(); };
             TraverseButton.Click += (sender, args) =>
             {
-                new BFSWindow(_map.Keys).Show();
+                new TraverseWindow(_map.Keys).Show();
             };
             ClearButton.Click += (sender, args) =>
             {
@@ -55,6 +55,7 @@ namespace RedBlackTrees.PL
             {
                 _map.Add(val, "");
                 treeView.ItemsSource = _map.Root;
+                DeleteMinimumButton.IsEnabled = true;
             }
             else
             {
@@ -65,6 +66,10 @@ namespace RedBlackTrees.PL
 
         private void DeleteMinimumButton_Click(object sender, RoutedEventArgs e)
         {
+            if (_map.IsEmpty || _map.Size == 1)
+            {
+                DeleteMinimumButton.IsEnabled = false;
+            }
             _map.DeleteMin();
             treeView.ItemsSource = _map.Root;
         }

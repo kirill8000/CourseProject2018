@@ -15,15 +15,14 @@ using System.Windows.Shapes;
 namespace RedBlackTrees.PL
 {
     /// <summary>
-    /// Interaction logic for BFSWindow.xaml
+    /// Interaction logic for TraverseWindow.xaml
     /// </summary>
-    public partial class BFSWindow : Window
+    public partial class TraverseWindow : Window
     {
-        public BFSWindow(IEnumerable<int> values)
+        public TraverseWindow(IEnumerable<int> values)
         {
             InitializeComponent();
             ListBox.ItemsSource = values;
-
         }
     }
 }

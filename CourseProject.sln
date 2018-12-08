@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms", "Algorithms\Algorithms.csproj", "{FC67B891-A38D-46EE-8013-FC926B9821BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{F8C8C95E-2EAB-48CD-82D1-00EA4F9B3C31}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBlackTrees.PL", "RedBlackTrees.PL\RedBlackTrees.PL.csproj", "{3521AF43-E363-4E30-ABA3-7BA316FF034E}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{FC67B891-A38D-46EE-8013-FC926B9821BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC67B891-A38D-46EE-8013-FC926B9821BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC67B891-A38D-46EE-8013-FC926B9821BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8C8C95E-2EAB-48CD-82D1-00EA4F9B3C31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8C8C95E-2EAB-48CD-82D1-00EA4F9B3C31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8C8C95E-2EAB-48CD-82D1-00EA4F9B3C31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8C8C95E-2EAB-48CD-82D1-00EA4F9B3C31}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3521AF43-E363-4E30-ABA3-7BA316FF034E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3521AF43-E363-4E30-ABA3-7BA316FF034E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3521AF43-E363-4E30-ABA3-7BA316FF034E}.Release|Any CPU.ActiveCfg = Release|Any CPU

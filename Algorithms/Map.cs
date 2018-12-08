@@ -265,6 +265,10 @@ namespace Algorithms
 
         public TKey Min()
         {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("Empty collection");
+            }
             return Min(_root);
         }
 
@@ -327,6 +331,10 @@ namespace Algorithms
 
         public TKey Max()
         {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("Empty collection");
+            }
             return Max(_root);
         }
 
@@ -378,6 +386,10 @@ namespace Algorithms
 
         public void DeleteMax()
         {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("Empty collection");
+            }
             _root = DeleteMax(_root);
             if (!IsEmpty)
             {
@@ -408,6 +420,10 @@ namespace Algorithms
 
         public void DeleteMin()
         {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("Empty collection");
+            }
             _root = DeleteMin(_root);
             if (!IsEmpty)
             {
@@ -433,6 +449,10 @@ namespace Algorithms
 
         public void Delete(TKey key)
         {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("Empty collection");
+            }
             _root = Delete(_root, key);
             if (!IsEmpty)
             {
