@@ -1,0 +1,29 @@
+﻿<Window x:Class="RedBlackTrees.PL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RedBlackTrees.PL"
+        mc:Ignorable="d"
+        Title="Бинарное дерево поиска" Height="420.679" Width="728.612">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="132"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="treeView" Margin="2.598,10,10,10" Grid.Column="1">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=Nodes}">
+                    <TextBlock Text="{Binding Key}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <TextBox x:Name="valueBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="112"/>
+        <Button x:Name="addButton" Content="Добавить" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="112" Click="addButton_Click"/>
+        <Button x:Name="BFSButton" Content="Обход в ширину" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="112"/>
+        <Button x:Name="TraverseButton" Content="Прямой обход" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="112"/>
+        <Button x:Name="ClearButton" Content="Очистить дерево" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="112"/>
+        <Button x:Name="DeleteMinimumButton" Content="Удалить минимум" HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top" Width="112" Click="DeleteMinimumButton_Click"/>
+
+    </Grid>
+</Window>
