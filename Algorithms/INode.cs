@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Algorithms
 {
-    public interface INode<TKey, TValue>
+    public interface INode<out TKey, out TValue>
     {
         IEnumerable<INode<TKey, TValue>> Nodes { get; }
         TKey Key { get; }

@@ -1,67 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Algorithms;
 
 namespace RedBlackTrees.PL
 {
-    public class Node
-    {
-        public string Name { get; set; }
-        public ObservableCollection<Node> Nodes { get; set; }
-    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        Map<int, string> _map = new Map<int, string>();
+        private Map<int, string> _map = new Map<int, string>();
+
         public MainWindow()
         {
             InitializeComponent();
+            Closing += (sender, args) =>
+            {
+                var r = MessageBox.Show("Вы действительно хотите выйти?", "Предупреждение", MessageBoxButton.YesNo);
+                if (r != MessageBoxResult.Yes)
+                {
+                    args.Cancel = true;
+                }
+            };
             for (int i = 0; i < 10; i++)
             {
-                _map.Add(i, i.ToString());
+                _map.Add(i, "");
             }
-            treeView.ItemsSource = _map.Root;
-            BFSButton.Click += (sender, args) => { new TraverseWindow(_map.GetBreadthFirstSearchEnumerator()).Show(); };
+            TreeView.ItemsSource = _map.Root;
             TraverseButton.Click += (sender, args) =>
             {
-                new TraverseWindow(_map.Keys).Show();
+                if (_map.Size > 0)
+                    new TraverseWindow(_map.Keys).Show();
+                else
+                    MessageBox.Show("Дерево пустое", "Warning!", MessageBoxButton.OK);
             };
-            ClearButton.Click += (sender, args) =>
-            {
-                _map = new Map<int, string>();
-                treeView.ItemsSource = _map.Root;
-            };
+                
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Int32.TryParse(valueBox.Text, out int val))
+            if (Int32.TryParse(ValueBox.Text, out int val))
             {
                 _map.Add(val, "");
-                treeView.ItemsSource = _map.Root;
+                TreeView.ItemsSource = _map.Root;
                 DeleteMinimumButton.IsEnabled = true;
             }
             else
             {
-                MessageBox.Show("Введите число!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Необходимо ввести число!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            valueBox.Clear();
+
+            ValueBox.Clear();
         }
 
         private void DeleteMinimumButton_Click(object sender, RoutedEventArgs e)
@@ -70,8 +60,43 @@ namespace RedBlackTrees.PL
             {
                 DeleteMinimumButton.IsEnabled = false;
             }
+
             _map.DeleteMin();
-            treeView.ItemsSource = _map.Root;
+            TreeView.ItemsSource = _map.Root;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Курсовой проект \"Бинарные деревья поиска\". Вариант 5.", "О программе",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void CloseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BFSButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_map.Size > 0)
+                new TraverseWindow(_map.GetBreadthFirstSearchEnumerator()).Show();
+            else
+                MessageBox.Show("Дерево пустое", "Warning!", MessageBoxButton.OK);
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            _map = new Map<int, string>();
+            TreeView.ItemsSource = _map.Root;
+        }
+
+        private void Help(object sender, RoutedEventArgs e)
+        {
+            var commandText = @"Help.chm";
+            var proc = new Process();
+            proc.StartInfo.FileName = commandText;
+            proc.StartInfo.UseShellExecute = true;
+            proc.Start();
         }
     }
 }

@@ -3,27 +3,55 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RedBlackTrees.PL"
+        xmlns:algorithms="clr-namespace:Algorithms;assembly=Algorithms"
         mc:Ignorable="d"
-        Title="Бинарное дерево поиска" Height="420.679" Width="728.612">
+        Title="Бинарное дерево поиска" Height="451.664" Width="728.612">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="21" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="132"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="132" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TreeView x:Name="treeView" Margin="2.598,10,10,10" Grid.Column="1">
+        <TreeView x:Name="TreeView" Margin="3,4.331,10,10" Grid.Column="1" Grid.Row="1">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Path=Nodes}">
                     <TextBlock Text="{Binding Key}" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <TextBox x:Name="valueBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="112"/>
-        <Button x:Name="addButton" Content="Добавить" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="112" Click="addButton_Click"/>
-        <Button x:Name="BFSButton" Content="Обход в ширину" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="112"/>
-        <Button x:Name="TraverseButton" Content="Прямой обход" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="112"/>
-        <Button x:Name="ClearButton" Content="Очистить дерево" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="112"/>
-        <Button x:Name="DeleteMinimumButton" Content="Удалить минимум" HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top" Width="112" Click="DeleteMinimumButton_Click"/>
+        <TextBox x:Name="ValueBox" HorizontalAlignment="Left" Height="23" Margin="10,4.331,0,0" TextWrapping="Wrap"
+                 Text="0" VerticalAlignment="Top" Width="112" Grid.Row="1" />
+        <Button x:Name="AddButton" Content="Добавить" HorizontalAlignment="Left" Margin="10,32.331,0,0"
+                VerticalAlignment="Top" Width="112" Click="addButton_Click" Grid.Row="1" />
+        <Button x:Name="BFSButton" Click="BFSButton_Click" Content="Обход в ширину" HorizontalAlignment="Left"
+                Margin="10,120.331,0,0" VerticalAlignment="Top" Width="112" Grid.Row="1" />
+        <Button x:Name="TraverseButton" Visibility="Hidden" Content="Прямой обход" HorizontalAlignment="Left"
+                Margin="10,145.331,0,0" VerticalAlignment="Top" Width="112" Grid.Row="1" />
+        <Button x:Name="ClearButton" Content="Очистить дерево" HorizontalAlignment="Left" Margin="10,95.331,0,0"
+                VerticalAlignment="Top" Width="112" Grid.Row="1" Click="ClearButton_Click" />
+        <Button x:Name="DeleteMinimumButton" Visibility="Hidden" Content="Удалить минимум" HorizontalAlignment="Left"
+                Margin="10,190.331,0,0" VerticalAlignment="Top" Width="112" Click="DeleteMinimumButton_Click"
+                Grid.Row="1" />
+        <Menu Grid.ColumnSpan="2" Height="21" VerticalAlignment="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Справка" Command="ApplicationCommands.Help">
+                    <MenuItem.CommandBindings>
+                        <CommandBinding Command="ApplicationCommands.Help" Executed="MenuItem_Click" />
+                    </MenuItem.CommandBindings>
+                </MenuItem>
+                <MenuItem Header="Выход" Click="CloseMenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="Действия">
+                <MenuItem Header="Очистить дерево" Click="ClearButton_Click" />
+                <MenuItem Header="Обход в ширину" Click="BFSButton_Click" />
+            </MenuItem>
+            <MenuItem Header="О программе">
+                <MenuItem Header="Справка" Click="Help" />
+            </MenuItem>
+        </Menu>
 
     </Grid>
 </Window>

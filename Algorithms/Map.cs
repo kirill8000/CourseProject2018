@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Algorithms
 {
-    //TODO сделать доки к фунциям, сгруппировать методы
-
     public class Map<TKey, TValue> : IEnumerable<TValue> where TKey : IComparable<TKey>
     {
         private Node _root;
@@ -60,7 +57,11 @@ namespace Algorithms
 
         private int GetSize(Node x)
         {
-            if (x == null) return 0;
+            if (x == null)
+            {
+                return 0;
+            }
+
             return x.N;
         }
 
@@ -149,7 +150,6 @@ namespace Algorithms
 
         public IEnumerator<TValue> GetEnumerator()
         {
-            //TODO сделать нормально
             foreach (var node in Traverse())
             {
                 yield return node.Value;
@@ -164,15 +164,39 @@ namespace Algorithms
 
         private Node Add(Node h, TKey key, TValue value)
         {
-            if (h == null) return new Node(key, value);
-            var cmp = key.CompareTo(h.Key);
-            if (cmp < 0) h.Left = Add(h.Left, key, value);
-            else if (cmp > 0) h.Right = Add(h.Right, key, value);
-            else h.Value = value;
+            if (h == null)
+            {
+                return new Node(key, value);
+            }
 
-            if (IsRed(h.Right)) h = RotateLeft(h);
-            if (IsRed(h.Left) && IsRed(h.Left.Left)) h = RotateRight(h);
-            if (IsRed(h.Left) && IsRed(h.Right)) FlipColors(h);
+            var cmp = key.CompareTo(h.Key);
+            if (cmp < 0)
+            {
+                h.Left = Add(h.Left, key, value);
+            }
+            else if (cmp > 0)
+            {
+                h.Right = Add(h.Right, key, value);
+            }
+            else
+            {
+                h.Value = value;
+            }
+
+            if (IsRed(h.Right))
+            {
+                h = RotateLeft(h);
+            }
+
+            if (IsRed(h.Left) && IsRed(h.Left.Left))
+            {
+                h = RotateRight(h);
+            }
+
+            if (IsRed(h.Left) && IsRed(h.Right))
+            {
+                FlipColors(h);
+            }
 
             h.N = GetSize(h.Left) + GetSize(h.Right) + 1;
             return h;
@@ -508,18 +532,18 @@ namespace Algorithms
             queue.Enqueue(_root);
             while (queue.Count > 0)
             {
-                var curr = queue.Dequeue();
-                if (curr.Left != null)
+                var current = queue.Dequeue();
+                if (current.Left != null)
                 {
-                    queue.Enqueue(curr.Left);
+                    queue.Enqueue(current.Left);
                 }
 
-                if (curr.Right != null)
+                if (current.Right != null)
                 {
-                    queue.Enqueue(curr.Right);
+                    queue.Enqueue(current.Right);
                 }
 
-                yield return curr.Key;
+                yield return current.Key;
             }
         }
     }
